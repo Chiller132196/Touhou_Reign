@@ -1,4 +1,0 @@
-repository "Touhou Reigns@wechat_os_qy0_onm0lkmx03zy9kqonzwd0@cloud.cn"
-  path "/"
-    br "/main"
-    co "/main"
