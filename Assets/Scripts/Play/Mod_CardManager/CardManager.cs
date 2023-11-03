@@ -7,6 +7,11 @@ namespace CardManager
     public class CardManager : MonoBehaviour
     {
         /// <summary>
+        /// 卡牌管理器单例
+        /// </summary>
+        public static CardManager cardManager;
+
+        /// <summary>
         /// 初级卡牌存放列表
         /// </summary>
         public List<Card> JuniorCards = new List<Card>();
@@ -20,6 +25,19 @@ namespace CardManager
         public List<Card> SeniorCards = new List<Card>();
 
         private void Awake()
+        {
+            cardManager = this;
+        }
+
+        /// <summary>
+        /// 抽卡函数
+        /// </summary>
+        public void Gacha()
+        {
+
+        }
+
+        public void GotResult(CardResult _result)
         {
 
         }
