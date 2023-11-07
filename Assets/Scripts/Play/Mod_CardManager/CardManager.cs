@@ -32,6 +32,11 @@ namespace CardManager
         /// </summary>
         public List<Card> SeniorCards = new List<Card>();
 
+        /// <summary>
+        /// 当前卡池
+        /// </summary>
+        public List<Card> NowCards = new List<Card>();
+
         private void Awake()
         {
             cardManager = this;
@@ -50,6 +55,26 @@ namespace CardManager
             else if (_stage == Stage.Senior)
             {
 
+            }
+        }
+
+        /// <summary>
+        /// 洗牌
+        /// </summary>
+        /// <param name="_stage"></param>
+        public void RefreshCards(Stage _stage)
+        {
+            if (_stage == Stage.Junior)
+            {
+                JuniorCards.ForEach(i => NowCards.Add(i));
+            }
+            else if (_stage == Stage.Medium)
+            {
+                MediumCards.ForEach(i => NowCards.Add(i));
+            }
+            else if (_stage == Stage.Senior)
+            {
+                SeniorCards.ForEach(i => NowCards.Add(i));
             }
         }
 
@@ -87,7 +112,7 @@ namespace CardManager
                 GotAddition(thisCard.cardAddtion2);
             }
 
-            PlayerManager.PlayerManager.Check();
+            PlayerManager.PlayerManager.playerManager.Check();
 
             Gacha();
         }

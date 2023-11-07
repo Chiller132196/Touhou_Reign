@@ -14,6 +14,19 @@ namespace PlayerManager
         Senior
     }
 
+    public enum EndType
+    {
+        End9961,
+        Poor,
+        Rich,
+        Strenth,
+        Weakness,
+        Glad,
+        Sadness,
+        Fame,
+        Disappear
+    }
+
     /// <summary>
     /// 存放信息的玩家类
     /// </summary>
@@ -51,8 +64,11 @@ namespace PlayerManager
         public int playerMental
         {
             get => mental;
-            set { if (value <= playerMaxMental) { mental = value; }
-                else { mental = playerMaxMental; }
+            set 
+            { 
+                if (value >= playerMaxMental) { mental = playerMaxMental; }
+                else if (value <= 0) { mental = 0; }
+                else { mental = value; }
             }
         }
         /// <summary>
@@ -66,8 +82,11 @@ namespace PlayerManager
         public int playerHealth
         {
             get => health;
-            set { if (value <= playerMaxHealth) { health = value; } 
-                else { health = playerMaxHealth; }
+            set
+            {
+                if (value >= playerMaxHealth) { health = playerMaxHealth; }
+                else if (value <= 0) { health = 0; }
+                else { health = value; }
             }
         }
 
@@ -82,8 +101,11 @@ namespace PlayerManager
         public int playerPopu
         {
             get => popu;
-            set { if (value <= playerMaxPopu) { popu = value; }
-                else { popu = playerMaxPopu; }
+            set
+            {
+                if (value >= playerMaxPopu) { popu = playerMaxPopu; }
+                else if (value <= 0) { popu = 0; }
+                else { popu = value; }
             }
         }
 
@@ -98,8 +120,11 @@ namespace PlayerManager
         public int playerWealth
         {
             get => wealth;
-            set { if (value <= playerMaxWealth) { wealth = value; }
-                else { wealth = playerMaxWealth; }
+            set
+            {
+                if (value >= playerMaxWealth) { wealth = playerMaxWealth; }
+                else if (value <= 0) { wealth = 0; }
+                else { wealth = value; }
             }
         }
 

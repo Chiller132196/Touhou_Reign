@@ -65,10 +65,49 @@ namespace PlayerManager
         /// </summary>
         public void Check()
         {
-            if (player.playerHealth > 25)
+            if (player.playerHealth >= 50)
             {
-                ;
+                GameEnd(EndType.Strenth);
             }
+            else if (player.playerMental >= 50)
+            {
+                GameEnd(EndType.Glad);
+            }
+            else if (player.playerPopu >= 50)
+            {
+                GameEnd(EndType.Fame);
+            }
+            else if (player.playerWealth >= 50)
+            {
+                GameEnd(EndType.Rich);
+            }
+
+            else if (player.playerHealth <= 0)
+            {
+                GameEnd(EndType.Weakness);
+            }
+            else if (player.playerMental <= 0)
+            {
+                GameEnd(EndType.Sadness);
+            }
+            else if (player.playerPopu <= 0) {
+                GameEnd(EndType.Disappear);
+            }
+            else if (player.playerWealth <= 0)
+            {
+                GameEnd(EndType.Poor);
+            }
+            
+
+        }
+
+        /// <summary>
+        /// 游戏结束
+        /// </summary>
+        /// <param name="_endType"></param>
+        public void GameEnd(EndType _endType)
+        {
+
         }
 
         private void Awake()
