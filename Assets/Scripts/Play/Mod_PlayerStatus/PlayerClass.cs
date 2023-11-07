@@ -51,8 +51,14 @@ namespace PlayerManager
         public int playerMental
         {
             get => mental;
-            set { mental = value; }
+            set { if (value <= playerMaxMental) { mental = value; }
+                else { mental = playerMaxMental; }
+            }
         }
+        /// <summary>
+        /// 玩家最大心情
+        /// </summary>
+        internal int playerMaxMental = 50;
 
         /// <summary>
         /// 玩家健康
@@ -60,8 +66,15 @@ namespace PlayerManager
         public int playerHealth
         {
             get => health;
-            set { health = value; }
+            set { if (value <= playerMaxHealth) { health = value; } 
+                else { health = playerMaxHealth; }
+            }
         }
+
+        /// <summary>
+        /// 玩家最大健康
+        /// </summary>
+        internal int playerMaxHealth = 50;
 
         /// <summary>
         /// 玩家人气
@@ -69,8 +82,15 @@ namespace PlayerManager
         public int playerPopu
         {
             get => popu;
-            set { popu = value; }
+            set { if (value <= playerMaxPopu) { popu = value; }
+                else { popu = playerMaxPopu; }
+            }
         }
+
+        /// <summary>
+        /// 玩家最大人气
+        /// </summary>
+        internal int playerMaxPopu = 50;
 
         /// <summary>
         /// 玩家财富
@@ -78,8 +98,15 @@ namespace PlayerManager
         public int playerWealth
         {
             get => wealth;
-            set { wealth = value; }
+            set { if (value <= playerMaxWealth) { wealth = value; }
+                else { wealth = playerMaxWealth; }
+            }
         }
+
+        /// <summary>
+        /// 玩家最大财富
+        /// </summary>
+        internal int playerMaxWealth = 50;
 
         /// <summary>
         /// 玩家生存天数

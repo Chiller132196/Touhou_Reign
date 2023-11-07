@@ -15,6 +15,15 @@ namespace CardManager
     }
 
     /// <summary>
+    /// 卡牌带来的特殊效果
+    /// </summary>
+    public enum CardAddition
+    {
+        Phone,
+        End9961
+    }
+
+    /// <summary>
     /// 卡牌的结果
     /// </summary>
     public enum CardResult
