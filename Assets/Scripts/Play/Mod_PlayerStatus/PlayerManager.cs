@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using CardManager;
 
 namespace PlayerManager
 {
@@ -11,7 +12,7 @@ namespace PlayerManager
         /// </summary>
         public static PlayerManager playerManager;
 
-        public Player player;
+        public Player player = new Player();
 
         /// <summary>
         /// 初始化玩家数据
@@ -25,6 +26,8 @@ namespace PlayerManager
             player.health = 25;
             player.popu = 25;
             player.wealth = 25;
+
+            Debug.Log("已加载玩家数据");
         }
 
         /// <summary>
@@ -49,10 +52,17 @@ namespace PlayerManager
 
         public void ChangePlayerState(CardManager.Card tCard, int tIndex)
         {
+            if (tIndex > 1 || tIndex < 0) {
+                Debug.Log("输入索引无效");
+                return;
+            }
+
             player.health += tCard.cardHealthEffect(tIndex);
             player.mental += tCard.cardMentalEffect(tIndex);
             player.popu += tCard.cardPopuEffect(tIndex);
             player.wealth += tCard.cardWealthEffect(tIndex);
+
+            Debug.Log("玩家属性: " + "Health:" + player.health + " Mental:" + player.mental + " Popu:" + player.popu + " Wealth:" + player.wealth);
         }
 
         public void ChangePlayerStage()
@@ -65,6 +75,7 @@ namespace PlayerManager
         /// </summary>
         public void Check()
         {
+            //属性溢出时
             if (player.playerHealth >= 50)
             {
                 GameEnd(EndType.Strenth);
@@ -82,6 +93,7 @@ namespace PlayerManager
                 GameEnd(EndType.Rich);
             }
 
+            //属性跌至0时
             else if (player.playerHealth <= 0)
             {
                 GameEnd(EndType.Weakness);
@@ -113,12 +125,13 @@ namespace PlayerManager
         private void Awake()
         {
             playerManager = this;
+            LoadPlayer();
         }
 
         // Start is called before the first frame update
         void Start()
         {
-            LoadPlayer();
+
         }
 
         // Update is called once per frame

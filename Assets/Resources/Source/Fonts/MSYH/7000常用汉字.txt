@@ -1,5 +1,6 @@
 1234567890
 !"#$%&'()*+,-./0123456789:;<=>?@
+！“”，。？~：；‘、
 ACDEFGHIJKLMNOPQRSTUVWXYZ
 [\]^_`
 acdefghijklmnopqrstuvwxyz

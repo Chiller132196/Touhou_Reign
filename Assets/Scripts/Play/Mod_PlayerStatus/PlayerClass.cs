@@ -13,6 +13,15 @@ namespace PlayerManager
         Medium,
         Senior
     }
+    
+    /// <summary>
+    /// 玩家的游玩状态
+    /// </summary>
+    public enum PlayerState
+    {
+        Choice,
+        ReadResult
+    }
 
     public enum EndType
     {

@@ -37,25 +37,35 @@ namespace CardManager
         /// </summary>
         public List<Card> NowCards = new List<Card>();
 
+        /// <summary>
+        /// 进行了多少次抽卡
+        /// </summary>
+        public int gachaTimes;
+
         private void Awake()
         {
             cardManager = this;
         }
 
+        /// <summary>
+        /// 改变游戏阶段
+        /// </summary>
+        /// <param name="_stage"></param>
         public void StageChanged(Stage _stage)
         {
-            if (_stage == Stage.Junior)
-            {
+            RefreshCards(_stage);
 
-            }
-            else if (_stage == Stage.Medium)
-            {
+            gachaTimes = 0;
+            Gacha();
+        }
 
-            }
-            else if (_stage == Stage.Senior)
-            {
-
-            }
+        /// <summary>
+        /// 切换至下一个阶段
+        /// </summary>
+        public void SwitchStage() 
+        {
+            PlayerManager.PlayerManager.playerManager.player.playerStage += 1;
+            StageChanged(PlayerManager.PlayerManager.playerManager.player.playerStage);
         }
 
         /// <summary>
@@ -66,16 +76,51 @@ namespace CardManager
         {
             if (_stage == Stage.Junior)
             {
-                JuniorCards.ForEach(i => NowCards.Add(i));
+                Card[] temp = JuniorCards.ToArray();
+                Debug.Log("Card temp:" + temp.Length);
+/*                JuniorCards.ForEach(i => NowCards.Add(i));*/
+
+                for (int i = 0; i < JuniorCards.Count; i++)
+                {
+                    int num = Random.Range(0, JuniorCards.Count - 1);
+                    Card tCard = temp[num];
+                    temp[num] = temp[i];
+                    temp[i] = tCard;
+                }
+
+                NowCards = new List<Card>(temp);
             }
+
             else if (_stage == Stage.Medium)
             {
-                MediumCards.ForEach(i => NowCards.Add(i));
+                Card[] temp = MediumCards.ToArray();
+
+                for (int i = 0; i < MediumCards.Count; i++)
+                {
+                    int num = Random.Range(0, MediumCards.Count - 1);
+                    Card tCard = temp[num];
+                    temp[num] = temp[i];
+                    temp[i] = tCard;
+                }
+
+                NowCards = new List<Card>(temp);
             }
+
             else if (_stage == Stage.Senior)
             {
-                SeniorCards.ForEach(i => NowCards.Add(i));
+                Card[] temp = SeniorCards.ToArray();
+                for (int i = 0; i < SeniorCards.Count; i++)
+                {
+                    int num = Random.Range(0, JuniorCards.Count - 1);
+                    Card tCard = temp[num];
+                    temp[num] = temp[i];
+                    temp[i] = tCard;
+                }
+
+                NowCards = new List<Card>(temp);
             }
+
+            Debug.Log("已完成洗牌，现在牌堆大小为" + NowCards.Count);
         }
 
         /// <summary>
@@ -83,14 +128,17 @@ namespace CardManager
         /// </summary>
         public void Gacha()
         {
-            /*
-            if (oldStage != PlayerManager.PlayerManager.playerManager.player.playerStage)
+            if (gachaTimes == NowCards.Count)
             {
-
+                SwitchStage();
             }
 
-            oldStage = PlayerManager.PlayerManager.playerManager.player.playerStage;*/
+            thisCard = NowCards[gachaTimes];
+            gachaTimes++;
 
+            Debug.Log("抽到了" + thisCard.cardTitle);
+
+            UI_Manager.UIManager.uiManager.SetShowedCard(thisCard);
 
         }
 
@@ -133,6 +181,9 @@ namespace CardManager
         void Start()
         {
             GetComponent<CardLoader>().LoadCard();
+
+            gachaTimes = 0;
+            StageChanged(PlayerManager.PlayerManager.playerManager.player.playerStage);
         }
 
         // Update is called once per frame

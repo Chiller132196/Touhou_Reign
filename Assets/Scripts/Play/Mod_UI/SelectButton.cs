@@ -6,12 +6,13 @@ using CardManager;
 public class SelectButton : MonoBehaviour
 {
     CardManager.CardManager localCardManager = CardManager.CardManager.cardManager;
+
     /// <summary>
     /// 确定按钮触发事件
     /// </summary>
     public void ConfirmBtn()
     {
-        localCardManager.GotResult(CardResult.Yes);
+        CardManager.CardManager.cardManager.GotResult(CardResult.Yes);
     }
 
     /// <summary>
@@ -19,7 +20,7 @@ public class SelectButton : MonoBehaviour
     /// </summary>
     public void RejectBtn()
     {
-        localCardManager.GotResult(CardResult.No);
+        CardManager.CardManager.cardManager.GotResult(CardResult.No);
     }
 
     // Start is called before the first frame update
