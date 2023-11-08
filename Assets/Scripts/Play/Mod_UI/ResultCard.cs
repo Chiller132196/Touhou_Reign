@@ -15,15 +15,16 @@ public class ResultCard : MonoBehaviour
     /// </summary>
     public TMP_Text cardInfo;
 
-    // Start is called before the first frame update
-    void Start()
+    public void ChangeCardFace(CardManager.Card _card)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        cardTitle.text = _card.cardShowedTitle;
+        if (PlayerManager.PlayerManager.playerManager.player.playerAction == PlayerManager.PlayerAction.ReadConfirmResult)
+        {
+            cardInfo.text = _card.cardShowedResult1;
+        }
+        else
+        {
+            cardInfo.text = _card.cardShowedResult2;
+        }
     }
 }

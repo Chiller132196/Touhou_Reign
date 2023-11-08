@@ -19,6 +19,8 @@ namespace PlayerManager
         /// </summary>
         private void LoadPlayer()
         {
+            Debug.Log("加载玩家中");
+            player.playerAction = PlayerAction.Choice;
             player.playerStage = Stage.Junior;
             player.playerSD = 0;
 
@@ -50,7 +52,7 @@ namespace PlayerManager
             }
         }
 
-        public void ChangePlayerState(CardManager.Card tCard, int tIndex)
+        public void ChangePlayerState(Card tCard, int tIndex)
         {
             if (tIndex > 1 || tIndex < 0) {
                 Debug.Log("输入索引无效");
@@ -65,9 +67,14 @@ namespace PlayerManager
             Debug.Log("玩家属性: " + "Health:" + player.health + " Mental:" + player.mental + " Popu:" + player.popu + " Wealth:" + player.wealth);
         }
 
-        public void ChangePlayerStage()
+        public void ChangePlayerStage(Stage _stage)
         {
+            player.playerStage = _stage;
+        }
 
+        public void GoNextPlayerStage()
+        {
+            player.playerStage += 1;
         }
 
         /// <summary>
@@ -119,19 +126,19 @@ namespace PlayerManager
         /// <param name="_endType"></param>
         public void GameEnd(EndType _endType)
         {
-
+            player.playerAction = PlayerAction.End;
+            Debug.Log("游戏结束");
         }
 
         private void Awake()
         {
             playerManager = this;
-            LoadPlayer();
         }
 
         // Start is called before the first frame update
         void Start()
         {
-
+            LoadPlayer();
         }
 
         // Update is called once per frame

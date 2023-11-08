@@ -2064,8 +2064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9962e9dde8e346a49a365ac5f9f34829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardTitle: {fileID: 0}
-  cardInfo: {fileID: 0}
+  cardTitle: {fileID: 1423131565}
+  cardInfo: {fileID: 1423131566}
 --- !u!114 &1423131569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2811,7 +2811,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showedCard: {fileID: 193379178}
-  resultCard: {fileID: 0}
+  resultCard: {fileID: 1423131567}
+  topCard: {fileID: 193379178}
+  bottomCard: {fileID: 1423131567}
 --- !u!114 &2019847707
 MonoBehaviour:
   m_ObjectHideFlags: 0

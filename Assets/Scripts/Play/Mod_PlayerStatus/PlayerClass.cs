@@ -17,10 +17,13 @@ namespace PlayerManager
     /// <summary>
     /// 玩家的游玩状态
     /// </summary>
-    public enum PlayerState
+    public enum PlayerAction
     {
+        Awake,
         Choice,
-        ReadResult
+        ReadConfirmResult,
+        ReadRejectResult,
+        End
     }
 
     public enum EndType
@@ -45,7 +48,17 @@ namespace PlayerManager
         /// 玩家所处阶段
         /// </summary>
         public Stage playerStage { get; set; }
-        
+
+        internal PlayerAction action;
+        public PlayerAction playerAction { 
+            get => action;
+            set
+            {
+                action = value;
+                // Debug.Log(Time.deltaTime + " Now State:" + action.ToString());
+            }
+        }
+
         /// <summary>
         /// 心情
         /// </summary>

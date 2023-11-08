@@ -20,5 +20,5 @@ public class ShowedCard : MonoBehaviour
         cardTitleText.text = _card.cardShowedTitle;
         cardInfoText.text = _card.cardShowedInfo;
     }
-
+ 
 }

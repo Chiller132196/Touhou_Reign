@@ -64,7 +64,7 @@ namespace CardManager
         /// </summary>
         public void SwitchStage() 
         {
-            PlayerManager.PlayerManager.playerManager.player.playerStage += 1;
+            PlayerManager.PlayerManager.playerManager.GoNextPlayerStage();
             StageChanged(PlayerManager.PlayerManager.playerManager.player.playerStage);
         }
 
@@ -131,6 +131,7 @@ namespace CardManager
             if (gachaTimes == NowCards.Count)
             {
                 SwitchStage();
+                return;
             }
 
             thisCard = NowCards[gachaTimes];
@@ -138,8 +139,8 @@ namespace CardManager
 
             Debug.Log("抽到了" + thisCard.cardTitle);
 
-            UI_Manager.UIManager.uiManager.SetShowedCard(thisCard);
-
+            UI_Manager.UIManager.uiManager.SetShowedCard(thisCard); //提前准备选项牌面
+            UI_Manager.UIManager.uiManager.SetResultCard(thisCard); //提前准备结果牌面
         }
 
         /// <summary>
@@ -150,19 +151,17 @@ namespace CardManager
         {
             if (_result == CardResult.Yes)
             {
-                PlayerManager.PlayerManager.playerManager.ChangePlayerState(thisCard, 0);
+                PlayerManager.PlayerManager.playerManager.ChangePlayerState(thisCard, 0); //将卡牌影响传入玩家管理器
                 GotAddition(thisCard.cardAddtion1);
             }
 
             else
             {
-                PlayerManager.PlayerManager.playerManager.ChangePlayerState(thisCard, 1);
+                PlayerManager.PlayerManager.playerManager.ChangePlayerState(thisCard, 1); //将卡牌影响传入玩家管理器
                 GotAddition(thisCard.cardAddtion2);
             }
 
-            PlayerManager.PlayerManager.playerManager.Check();
-
-            Gacha();
+//            Gacha();
         }
 
         /// <summary>
@@ -183,7 +182,8 @@ namespace CardManager
             GetComponent<CardLoader>().LoadCard();
 
             gachaTimes = 0;
-            StageChanged(PlayerManager.PlayerManager.playerManager.player.playerStage);
+            StageChanged(PlayerManager.PlayerManager.playerManager.player.playerStage);/*
+            PlayerManager.PlayerManager.playerManager.player.playerAction = PlayerAction.Choice;*/
         }
 
         // Update is called once per frame
