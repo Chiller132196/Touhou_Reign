@@ -19,8 +19,8 @@ namespace PlayerManager
         /// </summary>
         private void LoadPlayer()
         {
-            Debug.Log("加载玩家中");
-            player.playerAction = PlayerAction.Choice;
+            // Debug.Log("加载玩家中");
+            player.playerAction = PlayerAction.Awake;
             player.playerStage = Stage.Junior;
             player.playerSD = 0;
 
@@ -29,7 +29,7 @@ namespace PlayerManager
             player.popu = 25;
             player.wealth = 25;
 
-            Debug.Log("已加载玩家数据");
+            // Debug.Log("已加载玩家数据");
         }
 
         /// <summary>

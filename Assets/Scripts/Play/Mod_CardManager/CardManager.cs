@@ -136,9 +136,11 @@ namespace CardManager
 
             thisCard = NowCards[gachaTimes];
             gachaTimes++;
+            PlayerManager.PlayerManager.playerManager.player.playerSD++;
 
             Debug.Log("抽到了" + thisCard.cardTitle);
 
+            UI_Manager.UIManager.uiManager.RefreshTimer();
             UI_Manager.UIManager.uiManager.SetShowedCard(thisCard); //提前准备选项牌面
             UI_Manager.UIManager.uiManager.SetResultCard(thisCard); //提前准备结果牌面
         }
@@ -182,8 +184,7 @@ namespace CardManager
             GetComponent<CardLoader>().LoadCard();
 
             gachaTimes = 0;
-            StageChanged(PlayerManager.PlayerManager.playerManager.player.playerStage);/*
-            PlayerManager.PlayerManager.playerManager.player.playerAction = PlayerAction.Choice;*/
+            StageChanged(PlayerManager.PlayerManager.playerManager.player.playerStage);
         }
 
         // Update is called once per frame

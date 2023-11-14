@@ -3,28 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ResultCard : MonoBehaviour
+namespace UI_Manager
 {
-    /// <summary>
-    /// 结果牌标题
-    /// </summary>
-    public TMP_Text cardTitle;
-
-    /// <summary>
-    /// 结果牌内容
-    /// </summary>
-    public TMP_Text cardInfo;
-
-    public void ChangeCardFace(CardManager.Card _card)
+    public class ResultCard : CardObject
     {
-        cardTitle.text = _card.cardShowedTitle;
-        if (PlayerManager.PlayerManager.playerManager.player.playerAction == PlayerManager.PlayerAction.ReadConfirmResult)
+        /// <summary>
+        /// 结果牌标题
+        /// </summary>
+        public TMP_Text cardTitle;
+
+        /// <summary>
+        /// 结果牌内容
+        /// </summary>
+        public TMP_Text cardInfo;
+
+        private CardManager.Card nowCard;
+
+        public void ChangeCardFace(CardManager.Card _card)
         {
-            cardInfo.text = _card.cardShowedResult1;
+            nowCard = _card;
+
+            cardTitle.text = _card.cardShowedTitle;
+            if (PlayerManager.PlayerManager.playerManager.player.playerAction == PlayerManager.PlayerAction.ReadConfirmResult)
+            {
+                Debug.Log("结果1");
+                cardInfo.text = _card.cardShowedResult1;
+            }
+            else
+            {
+                Debug.Log("结果2");
+                cardInfo.text = _card.cardShowedResult2;
+            }
         }
-        else
+
+        public void RefreshCardFace()
         {
-            cardInfo.text = _card.cardShowedResult2;
+            if (PlayerManager.PlayerManager.playerManager.player.playerAction == PlayerManager.PlayerAction.ReadConfirmResult)
+            {
+                Debug.Log("结果1");
+                cardInfo.text = nowCard.cardShowedResult1;
+            }
+            else
+            {
+                Debug.Log("结果2");
+                cardInfo.text = nowCard.cardShowedResult2;
+            }
         }
     }
-}
+} 

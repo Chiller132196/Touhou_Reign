@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CardManager;
+using TMPro;
 
 namespace UI_Manager
 {
@@ -33,6 +34,21 @@ namespace UI_Manager
         public GameObject bottomCard;
 
         /// <summary>
+        /// 左上角的生存天数
+        /// </summary>
+        public GameObject timer;
+
+        /// <summary>
+        /// 正在播放退出动画演出的卡牌
+        /// </summary>
+        public GameObject dropCard;
+
+        public TMP_Text healthNum;
+        public TMP_Text mentalNum;
+        public TMP_Text popuNum;
+        public TMP_Text wealthNum;
+
+        /// <summary>
         /// 设置牌面
         /// </summary>
         /// <param name="_card"></param>
@@ -46,13 +62,22 @@ namespace UI_Manager
             resultCard.GetComponent<ResultCard>().ChangeCardFace(_card);
         }
 
+        public void RefreshResultCard()
+        {
+            resultCard.GetComponent<ResultCard>().RefreshCardFace();
+        }
+
         /// <summary>
         /// 交换上下两张卡牌的层次关系
         /// </summary>
         public void SwitchCard()
         {
-            topCard.SetActive(false);
-            bottomCard.SetActive(true);
+            bottomCard.GetComponent<CardObject>().isDropable = false;
+            bottomCard.transform.position = new Vector2(960.0f, 540.0f);
+            topCard.GetComponent<CardObject>().isDropable = true;
+
+//            topCard.SetActive(false);
+//            bottomCard.SetActive(true);
 
             GameObject temp = topCard.gameObject;
             topCard = bottomCard;
@@ -77,6 +102,23 @@ namespace UI_Manager
         public void PutOnCard()
         {
             bottomCard.SetActive(true);
+        }
+
+        /// <summary>
+        /// 刷新计时器
+        /// </summary>
+        public void RefreshTimer()
+        {
+            timer.GetComponent<TimeAdmin>().RefreshTime();
+        }
+
+        /// <summary>
+        /// 修改计时器
+        /// </summary>
+        /// <param name="_time"></param>
+        public void SetTimer(int _time)
+        {
+            timer.GetComponent<TimeAdmin>().SetTime(_time);
         }
 
         private void Awake()
