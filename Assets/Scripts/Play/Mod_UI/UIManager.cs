@@ -85,6 +85,17 @@ namespace UI_Manager
         }
 
         /// <summary>
+        /// 改变四项数值
+        /// </summary>
+        public void RefreshCount()
+        {
+            healthNum.text = PlayerManager.PlayerManager.playerManager.player.playerHealth.ToString();
+            mentalNum.text = PlayerManager.PlayerManager.playerManager.player.playerMental.ToString();
+            popuNum.text = PlayerManager.PlayerManager.playerManager.player.playerPopu.ToString();
+            wealthNum.text = PlayerManager.PlayerManager.playerManager.player.playerWealth.ToString();
+        }
+
+        /// <summary>
         /// 将最上方的卡牌放至底部
         /// </summary>
         public void TakeDownCard()

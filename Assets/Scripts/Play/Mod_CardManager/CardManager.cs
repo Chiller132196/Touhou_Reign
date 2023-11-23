@@ -163,7 +163,7 @@ namespace CardManager
                 GotAddition(thisCard.cardAddtion2);
             }
 
-//            Gacha();
+            UI_Manager.UIManager.uiManager.RefreshCount();
         }
 
         /// <summary>
@@ -175,6 +175,30 @@ namespace CardManager
             if (_cardAddition == "Phone")
             {
 
+            }
+            else if (_cardAddition == "Chase")
+            {
+
+            }
+            else if (_cardAddition == "Sleep")
+            {
+
+            }
+            else if (_cardAddition == "End9961")
+            {
+
+            }
+            else if (_cardAddition == "Coin")
+            {
+
+            }
+            else if (_cardAddition == "Aid")
+            {
+
+            }
+            else if (_cardAddition == "Paper")
+            {
+                PlayerManager.PlayerManager.playerManager.player.canGoNextStage = true;
             }
         }
 

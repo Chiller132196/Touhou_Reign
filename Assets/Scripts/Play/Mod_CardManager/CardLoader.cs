@@ -27,6 +27,7 @@ namespace CardManager
                 {
                     continue;
                 }
+                // Debug.Log(row);
 
                 string[] rows = row.ToString().Split(',');
 
@@ -68,13 +69,13 @@ namespace CardManager
                     thisCard.cardInfo = rows[3];
 
                     thisCard.popuEffect[0] = int.Parse(rows[4]);
-                    thisCard.popuEffect[1] = int.Parse(rows[5]);
+                    thisCard.popuEffect[1] = int.Parse(rows[8]);
 
-                    thisCard.healthEffect[0] = int.Parse(rows[5]);
-                    thisCard.healthEffect[1] = int.Parse(rows[9]);
+                    thisCard.mentalEffect[0] = int.Parse(rows[5]);
+                    thisCard.mentalEffect[1] = int.Parse(rows[9]);
 
-                    thisCard.mentalEffect[0] = int.Parse(rows[6]);
-                    thisCard.mentalEffect[1] = int.Parse(rows[10]);
+                    thisCard.healthEffect[0] = int.Parse(rows[6]);
+                    thisCard.healthEffect[1] = int.Parse(rows[10]);
 
                     thisCard.wealthEffect[0] = int.Parse(rows[7]);
                     thisCard.wealthEffect[1] = int.Parse(rows[11]);
@@ -85,7 +86,7 @@ namespace CardManager
                     thisCard.cardAddtion1 = rows[15];
                     thisCard.cardAddtion2 = rows[16];
 
-                    // Debug.Log("CardLoader: 添加 " + thisCard.cardShowedTitle + " 卡牌至" + rows[1]);
+                    Debug.Log("CardLoader: 添加 " + thisCard.cardShowedTitle + " 卡牌至" + rows[1]);
                 }
             }
             Debug.Log("Junior:" + GetComponent<CardManager>().JuniorCards.Count);

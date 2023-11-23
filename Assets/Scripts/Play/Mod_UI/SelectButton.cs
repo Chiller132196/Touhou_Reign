@@ -70,8 +70,8 @@ namespace UI_Manager
                 PlayerManager.PlayerManager.playerManager.player.playerAction = PlayerManager.PlayerAction.ReadRejectResult;
                 /*
                             UI_Manager.UIManager.uiManager.RefreshTimer();*/
-                UI_Manager.UIManager.uiManager.RefreshResultCard();
-                UI_Manager.UIManager.uiManager.SwitchCard();
+                UIManager.uiManager.RefreshResultCard();
+                UIManager.uiManager.SwitchCard();
             }
             else
             {
@@ -80,7 +80,7 @@ namespace UI_Manager
                 CardManager.CardManager.cardManager.Gacha();
                 /*
                             UI_Manager.UIManager.uiManager.RefreshTimer();*/
-                UI_Manager.UIManager.uiManager.SwitchCard();
+                UIManager.uiManager.SwitchCard();
             }
         }
 

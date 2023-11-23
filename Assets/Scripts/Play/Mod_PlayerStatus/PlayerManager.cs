@@ -19,6 +19,8 @@ namespace PlayerManager
         /// </summary>
         private void LoadPlayer()
         {
+            player.canGoNextStage = false;
+
             // Debug.Log("加载玩家中");
             player.playerAction = PlayerAction.Awake;
             player.playerStage = Stage.Junior;
@@ -38,6 +40,8 @@ namespace PlayerManager
         /// <param name="tIndex"></param>
         private void LoadPlayer(int tIndex)
         {
+            player.canGoNextStage = false;
+
             player.playerStage = Stage.Junior;
             player.playerSD = 0;
 
@@ -139,6 +143,7 @@ namespace PlayerManager
         void Start()
         {
             LoadPlayer();
+            UI_Manager.UIManager.uiManager.RefreshCount();
         }
 
         // Update is called once per frame

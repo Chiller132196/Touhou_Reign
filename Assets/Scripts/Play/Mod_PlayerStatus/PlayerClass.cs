@@ -50,6 +50,9 @@ namespace PlayerManager
         public Stage playerStage { get; set; }
 
         internal PlayerAction action;
+
+        internal bool canGoNextStage;
+
         public PlayerAction playerAction { 
             get => action;
             set
