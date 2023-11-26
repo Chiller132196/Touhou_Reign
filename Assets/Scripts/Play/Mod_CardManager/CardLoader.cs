@@ -86,10 +86,10 @@ namespace CardManager
                     thisCard.cardAddtion1 = rows[15];
                     thisCard.cardAddtion2 = rows[16];
 
-                    Debug.Log("CardLoader: 添加 " + thisCard.cardShowedTitle + " 卡牌至" + rows[1]);
+                    // Debug.Log("CardLoader: 添加 " + thisCard.cardShowedTitle + " 卡牌至" + rows[1]);
                 }
             }
-            Debug.Log("Junior:" + GetComponent<CardManager>().JuniorCards.Count);
+            // Debug.Log("Junior:" + GetComponent<CardManager>().JuniorCards.Count);
         }
 
         private void Awake()

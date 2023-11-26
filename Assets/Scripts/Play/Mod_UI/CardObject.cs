@@ -11,6 +11,8 @@ namespace UI_Manager
     {
         public bool isDrop;
 
+        public float timer = 0;
+
         public bool isDropable
         {
             get => isDrop;
@@ -29,7 +31,16 @@ namespace UI_Manager
         /// </summary>
         public void DropCard()
         {
-            transform.position = new Vector2(960.0f, Mathf.MoveTowards(transform.position.y, transform.position.y - 1000, 1.5f));
+            if (timer < 2.5f)
+            {
+                Debug.Log("尝试牵引卡牌");
+                timer += Time.deltaTime;
+                transform.position = new Vector2(transform.position.x, Mathf.MoveTowards(transform.position.y, transform.position.y - 2000, 3.5f));
+            }
+            else
+            {
+                ;
+            }
         }
 
         void Start()
@@ -41,8 +52,11 @@ namespace UI_Manager
         {
             if (isDropable)
             {
-                Debug.Log("尝试牵引卡牌");
                 DropCard();
+            }
+            else if (timer != 0)
+            {
+                timer = 0;
             }
         }
     }

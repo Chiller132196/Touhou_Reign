@@ -130,7 +130,11 @@ namespace CardManager
         {
             if (gachaTimes == NowCards.Count)
             {
-                SwitchStage();
+                //临时加入，后面正常改为进入下一阶段
+                PlayerManager.PlayerManager.playerManager.player.playerAction = PlayerAction.End;
+                PlayerManager.PlayerManager.playerManager.GameEnd(EndType.Escape);
+
+                // SwitchStage();
                 return;
             }
 
@@ -138,7 +142,7 @@ namespace CardManager
             gachaTimes++;
             PlayerManager.PlayerManager.playerManager.player.playerSD++;
 
-            Debug.Log("抽到了" + thisCard.cardTitle);
+            // Debug.Log("抽到了" + thisCard.cardTitle);
 
             UI_Manager.UIManager.uiManager.RefreshTimer();
             UI_Manager.UIManager.uiManager.SetShowedCard(thisCard); //提前准备选项牌面
@@ -202,13 +206,18 @@ namespace CardManager
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
+        public void Restart()
         {
             GetComponent<CardLoader>().LoadCard();
 
             gachaTimes = 0;
             StageChanged(PlayerManager.PlayerManager.playerManager.player.playerStage);
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            Restart();
         }
 
         // Update is called once per frame

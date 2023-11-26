@@ -20,7 +20,7 @@ namespace UI_Manager
                 Debug.Log("已做出选择");
                 return true;
             }
-            else if (PlayerManager.PlayerManager.playerManager.player.playerAction == PlayerManager.PlayerAction.ReadRejectResult)
+            else if (PlayerManager.PlayerManager.playerManager.player.playerAction == PlayerManager.PlayerAction.ReadRejectResult || PlayerManager.PlayerManager.playerManager.player.playerAction == PlayerManager.PlayerAction.ReadConfirmResult)
             {
                 Debug.Log("阅读文本完毕");
                 PlayerManager.PlayerManager.playerManager.Check();
@@ -41,11 +41,16 @@ namespace UI_Manager
             {
                 CardManager.CardManager.cardManager.GotResult(CardResult.Yes);
 
+                // Debug.Log("玩家选择了是，正在阅读同意文本");
                 PlayerManager.PlayerManager.playerManager.player.playerAction = PlayerManager.PlayerAction.ReadConfirmResult;
                 /*
                             UI_Manager.UIManager.uiManager.RefreshTimer();*/
-                UI_Manager.UIManager.uiManager.RefreshResultCard();
-                UI_Manager.UIManager.uiManager.SwitchCard();
+                UIManager.uiManager.RefreshResultCard();
+                UIManager.uiManager.SwitchCard();
+            }
+            else if (PlayerManager.PlayerManager.playerManager.player.playerAction == PlayerManager.PlayerAction.End)
+            {
+                Debug.Log("游戏已结束，取消下一步");
             }
             else   //玩家处于阅读结果文本状态，关闭结果文本，抽取下一张卡牌
             {
@@ -54,7 +59,7 @@ namespace UI_Manager
                 CardManager.CardManager.cardManager.Gacha();
                 /*
                             UI_Manager.UIManager.uiManager.RefreshTimer();*/
-                UI_Manager.UIManager.uiManager.SwitchCard();
+                UIManager.uiManager.SwitchCard();
             }
         }
 

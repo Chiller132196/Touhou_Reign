@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using CardManager;
 using TMPro;
 
@@ -48,6 +49,11 @@ namespace UI_Manager
         public TMP_Text popuNum;
         public TMP_Text wealthNum;
 
+        public GameObject healthImage;
+        public GameObject mentalImage;
+        public GameObject popuImage;
+        public GameObject wealthImage;
+
         /// <summary>
         /// 设置牌面
         /// </summary>
@@ -62,6 +68,31 @@ namespace UI_Manager
             resultCard.GetComponent<ResultCard>().ChangeCardFace(_card);
         }
 
+        /// <summary>
+        /// 自定义卡牌牌面
+        /// </summary>
+        public void DIYResultCard(string _title, string _info)
+        {
+            Card tCard = new Card();
+            tCard.cardTitle = _title;
+            tCard.cardInfo = _info;
+
+            resultCard.GetComponent<ResultCard>().ChangeCardFace(tCard);
+        }
+
+        /// <summary>
+        /// 自定义卡牌牌面
+        /// </summary>
+        public void DIYResultCard(string _title, string _result1, string _result2)
+        {
+            Card tCard = new Card();
+            tCard.cardTitle = _title;
+            tCard.cardResult1 = _result1;
+            tCard.cardResult2 = _result2;
+
+            resultCard.GetComponent<ResultCard>().ChangeCardFace(tCard);
+        }
+
         public void RefreshResultCard()
         {
             resultCard.GetComponent<ResultCard>().RefreshCardFace();
@@ -73,7 +104,7 @@ namespace UI_Manager
         public void SwitchCard()
         {
             bottomCard.GetComponent<CardObject>().isDropable = false;
-            bottomCard.transform.position = new Vector2(960.0f, 540.0f);
+            bottomCard.transform.position = new Vector2(640.0f, 360.0f);
             topCard.GetComponent<CardObject>().isDropable = true;
 
 //            topCard.SetActive(false);
@@ -89,10 +120,16 @@ namespace UI_Manager
         /// </summary>
         public void RefreshCount()
         {
-            healthNum.text = PlayerManager.PlayerManager.playerManager.player.playerHealth.ToString();
-            mentalNum.text = PlayerManager.PlayerManager.playerManager.player.playerMental.ToString();
-            popuNum.text = PlayerManager.PlayerManager.playerManager.player.playerPopu.ToString();
-            wealthNum.text = PlayerManager.PlayerManager.playerManager.player.playerWealth.ToString();
+            // Debug.Log("改变数字");
+            //healthNum.text = PlayerManager.PlayerManager.playerManager.player.playerHealth.ToString();
+            //mentalNum.text = PlayerManager.PlayerManager.playerManager.player.playerMental.ToString();
+            //popuNum.text = PlayerManager.PlayerManager.playerManager.player.playerPopu.ToString();
+            //wealthNum.text = PlayerManager.PlayerManager.playerManager.player.playerWealth.ToString();
+
+            healthImage.GetComponent<IconObject>().nowNum = PlayerManager.PlayerManager.playerManager.player.playerHealth;
+            mentalImage.GetComponent<IconObject>().nowNum = PlayerManager.PlayerManager.playerManager.player.playerMental;
+            popuImage.GetComponent<IconObject>().nowNum = PlayerManager.PlayerManager.playerManager.player.playerPopu;
+            wealthImage.GetComponent<IconObject>().nowNum = PlayerManager.PlayerManager.playerManager.player.playerWealth;
         }
 
         /// <summary>
@@ -130,6 +167,25 @@ namespace UI_Manager
         public void SetTimer(int _time)
         {
             timer.GetComponent<TimeAdmin>().SetTime(_time);
+        }
+
+        public void RefreshCardPosition(GameObject _cardObject)
+        {
+            _cardObject.transform.position = new Vector2(640f, 360f);
+        }
+
+        public void Restart()
+        {
+            topCard = showedCard;
+            bottomCard = resultCard;
+
+            RefreshCardPosition(showedCard);
+            RefreshCardPosition(resultCard);
+            // showedCard.transform.position = new Vector2(640f, 360f);
+            // resultCard.transform.position = new Vector2(640f, 360f);
+
+            topCard.GetComponent<CardObject>().isDropable = false;
+            bottomCard.GetComponent<CardObject>().isDropable = false;
         }
 
         private void Awake()

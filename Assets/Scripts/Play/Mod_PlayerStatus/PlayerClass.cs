@@ -36,7 +36,8 @@ namespace PlayerManager
         Glad,
         Sadness,
         Fame,
-        Disappear
+        Disappear,
+        Escape
     }
 
     /// <summary>

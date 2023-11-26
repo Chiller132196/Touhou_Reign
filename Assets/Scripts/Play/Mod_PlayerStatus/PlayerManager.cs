@@ -35,7 +35,7 @@ namespace PlayerManager
         }
 
         /// <summary>
-        /// 带有启动参数的重载初始化函数
+        /// 带有启动参数的重载初始化函数，以实现多种开局
         /// </summary>
         /// <param name="tIndex"></param>
         private void LoadPlayer(int tIndex)
@@ -86,6 +86,7 @@ namespace PlayerManager
         /// </summary>
         public void Check()
         {
+            Debug.LogWarning("检测玩家属性!");
             //属性溢出时
             if (player.playerHealth >= 50)
             {
@@ -130,8 +131,23 @@ namespace PlayerManager
         /// <param name="_endType"></param>
         public void GameEnd(EndType _endType)
         {
+            if (_endType == EndType.Escape)
+            {
+                UI_Manager.UIManager.uiManager.DIYResultCard("游戏结束", "你成功走出了兽道", "你成功走出了兽道");
+            }
+            else
+            {
+                UI_Manager.UIManager.uiManager.DIYResultCard("游戏结束", "你的属性不够", "你的属性不够");
+            }
             player.playerAction = PlayerAction.End;
             Debug.Log("游戏结束");
+        }
+
+        public void Restart()
+        {
+            LoadPlayer();
+            UI_Manager.UIManager.uiManager.Restart();
+            UI_Manager.UIManager.uiManager.RefreshCount();
         }
 
         private void Awake()
@@ -142,8 +158,7 @@ namespace PlayerManager
         // Start is called before the first frame update
         void Start()
         {
-            LoadPlayer();
-            UI_Manager.UIManager.uiManager.RefreshCount();
+            Restart();
         }
 
         // Update is called once per frame
